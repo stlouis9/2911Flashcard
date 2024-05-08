@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* height: 100vh; */
+    }
+    .logoutbox {
+      width: 500px;
+      height: 420px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.55); /* Adds a shadow */
+      padding: 35px;
+      margin: 20px;
+      color: black;
+      font-size: 30px;
+    }
+      .link {
+      text-decoration: none;
+      color: blue;
+      position: relative;
+      margin: auto;
+      text-align: center;
+      font-size: 25px;
+    }
+
+  </style>
+  </head>
+  <body>
+  <div class="container">
+    <div class="logoutbox">
+    You have successfully logged out of your account
+    <p style="font-size: 25px;">You can now close all windows.</p>
+    <p><a href="{{ url_for('index') }}" class="link-danger">Return to Homepage</a></p>
+    
+<!-- <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>!!!</strong> Log back in right away.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div> -->
+
+  </div>
+  
+</div>
+
+
+
+
+
+{% endblock %}
