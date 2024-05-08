@@ -1,9 +1,11 @@
-from flask import Flask,render_template,request,redirect,url_for
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, jsonify, request, redirect, url_for
+from pathlib import Path
+from db import db
+from models import User
+import csv
 
-db = SQLAlchemy()
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flashwizard.db'
 db.init_app(app)
 
 # routes
