@@ -7,7 +7,7 @@ from flask_login import LoginManager,login_user,login_required,current_user,logo
 import csv
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='templates/assets')
 app.config['SECRET_KEY'] = 'flashwizard'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flashwizard.db'
 
