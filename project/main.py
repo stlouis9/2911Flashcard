@@ -6,9 +6,11 @@ from models import User
 from flask_login import LoginManager,login_user,login_required,current_user,logout_user
 import csv
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'flashwizard'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///flashwizard.db'
+
 db.init_app(app)
 
 login_manager = LoginManager()
