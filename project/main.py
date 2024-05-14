@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for,fl
 from werkzeug.security import generate_password_hash, check_password_hash
 from pathlib import Path
 from db import db
-from models import User
+from models import User, Flashcard
 from flask_login import LoginManager,login_user,login_required,current_user,logout_user
 import csv
 
@@ -27,10 +27,15 @@ def load_user(user_id):
 def index():
     return render_template('index.html')
 
+
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', name=current_user.name)
+    # statement = db.select(Flashcard).where(Flashcard.user_id == current_user.id)
+    # records = db.session.execute(statement)
+    # flashcards = records.scalars()
+    flashcards = Flashcard.query.filter_by(user_id=current_user.id).all()
+    return render_template('profile.html', name=current_user.name, flashcards=flashcards)
 
 @app.route('/login')
 def login():
@@ -87,6 +92,17 @@ def login_post():
 def logout():
     logout_user()
     return render_template('logout.html')
+
+@app.route('/add_flashcard', methods=['POST'])
+def add_flashcard():
+    question = request.form.get('question')
+    answer = request.form.get('answer')
+    topic = request.form.get('topic')
+    flashcard = Flashcard(question=question, answer=answer, topic=topic, user_id=current_user.id)
+    db.session.add(flashcard)
+    db.session.commit()
+    return redirect(url_for('flashcard'))
+
 
 if __name__ == '__main__':
     app.run(debug=True,port=5000)
