@@ -110,6 +110,7 @@ def filter_flashcards():
         flashcards = Flashcard.query.filter_by(user_id=current_user.id).all()
     else:
         flashcards = Flashcard.query.filter_by(topic=topic, user_id=current_user.id).all()
+    return render_template('profile.html', name=current_user.name, flashcards=flashcards)
 @app.route('/delete_flashcard', methods=['POST'])
 def delete_flashcard():
     flashcard_id = request.form.get('flashcard_id')

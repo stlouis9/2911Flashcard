@@ -40,10 +40,6 @@
       <h3>Question: {{ flashcard.question }}</h3>
       <p>Answer: {{ flashcard.answer }}</p>
       <p>Topic: {{ flashcard.topic }}</p>
-      <form action="/delete_flashcard" method="POST">
-        <input type="hidden" name="flashcard_id" value="{{ flashcard.id }}">
-        <input type="submit" value="Delete">
-      </form>
   </div>
 {% endfor %}
 
