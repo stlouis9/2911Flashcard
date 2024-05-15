@@ -22,16 +22,21 @@
   <input type="submit" value="Submit">
 </form>
 
-<label for="topic">Topics:</label>
-<select id="topic" name="topic" required>
-  {% set topics = [] %}
-  {% for flashcard in flashcards %}
-      {% if flashcard.topic not in topics %}
-          {% set _ = topics.append(flashcard.topic) %}
-          <option value="{{ flashcard.topic }}">{{ flashcard.topic }}</option>
-      {% endif %}
-  {% endfor %}
-</select><br><br>
+<form action="/filter_flashcards" method="POST">
+  <label for="topic">Topics:</label>
+  <select id="topic" name="topic" required>
+    {% set topics = [] %}
+    {% set _ = topics.append('all') %}
+    <option value="all" {% if selected_topic == 'all' %}selected{% endif %}>All</option>
+    {% for flashcard in flashcards %}
+        {% if flashcard.topic not in topics %}
+            {% set _ = topics.append(flashcard.topic) %}
+            <option value="{{ flashcard.topic }}" {% if selected_topic == flashcard.topic %}selected{% endif %}>{{ flashcard.topic }}</option>
+        {% endif %}
+    {% endfor %}
+  </select><br><br>
+  <input type="submit" value="Filter">
+</form>
 
 <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Click and hold a card to the show the answer!">
   Help

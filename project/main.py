@@ -103,6 +103,14 @@ def add_flashcard():
     db.session.commit()
     return redirect(url_for('profile'))
 
+@app.route('/filter_flashcards', methods=['POST'])
+def filter_flashcards():
+    topic = request.form.get('topic')
+    if topic == 'all':
+        flashcards = Flashcard.query.filter_by(user_id=current_user.id).all()
+    else:
+        flashcards = Flashcard.query.filter_by(topic=topic, user_id=current_user.id).all()
+    return render_template('profile.html', name=current_user.name, flashcards=flashcards)
 @app.route('/delete_flashcard', methods=['POST'])
 def delete_flashcard():
     flashcard_id = request.form.get('flashcard_id')
@@ -111,7 +119,6 @@ def delete_flashcard():
         db.session.delete(flashcard)
         db.session.commit()
     return redirect(url_for('profile'))
-
 
 if __name__ == '__main__':
     app.run(debug=True,port=5000)
