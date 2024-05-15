@@ -41,7 +41,6 @@
   <div class="row">
 {% for flashcard in flashcards %}
 
-
     <div class="card card-flip bg-transparent w-25 border-0 my-1 mx-2">
       <div class="card-front bg-white border border-white rounded">
         <div class="card-body">
@@ -55,16 +54,20 @@
           <p class="card-text">Answer: {{ flashcard.answer }}</p>
         </div>
       </div>
+    <form action="/delete_flashcard" method="POST" class="deleteForm">
+      <input type="hidden" name="flashcard_id" value="{{ flashcard.id }}">
+      <button type="submit" class="btn btn-danger btn-sm" style="width: 30px; height: 30px;">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </form>
     </div>
-    <button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px;">
-      <i class="fa-solid fa-trash"></i>
-    </button>
 {% endfor %}
   </div>
 </div>
 </body>
 
 <style>
+
 .card-flip > div {
   backface-visibility: hidden;
   transition: transform 150ms;

@@ -103,6 +103,15 @@ def add_flashcard():
     db.session.commit()
     return redirect(url_for('profile'))
 
+@app.route('/delete_flashcard', methods=['POST'])
+def delete_flashcard():
+    flashcard_id = request.form.get('flashcard_id')
+    flashcard = Flashcard.query.get(flashcard_id)
+    if flashcard:
+        db.session.delete(flashcard)
+        db.session.commit()
+    return redirect(url_for('profile'))
+
 
 if __name__ == '__main__':
     app.run(debug=True,port=5000)
