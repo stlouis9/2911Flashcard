@@ -101,7 +101,7 @@ def add_flashcard():
     flashcard = Flashcard(question=question, answer=answer, topic=topic, user_id=current_user.id)
     db.session.add(flashcard)
     db.session.commit()
-    return redirect(url_for('flashcard'))
+    return redirect(url_for('profile'))
 
 
 if __name__ == '__main__':
