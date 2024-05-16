@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for,flash
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash
 from pathlib import Path
 from db import db
 from models import User, Flashcard
@@ -60,7 +60,7 @@ def signup_post():
         return redirect(url_for('signup'))
 
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='pbkdf2:sha256'))
+    new_user = User(email=email, name=name, password=password)
 
     # add the new user to the database
     db.session.add(new_user)
