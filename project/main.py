@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for,flash
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash
 from pathlib import Path
 from db import db
 from models import User, Flashcard
@@ -60,7 +60,7 @@ def signup_post():
         return redirect(url_for('signup'))
 
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='pbkdf2:sha256'))
+    new_user = User(email=email, name=name, password=password)
 
     # add the new user to the database
     db.session.add(new_user)
@@ -103,6 +103,14 @@ def add_flashcard():
     db.session.commit()
     return redirect(url_for('profile'))
 
+@app.route('/filter_flashcards', methods=['POST'])
+def filter_flashcards():
+    topic = request.form.get('topic')
+    if topic == 'all':
+        flashcards = Flashcard.query.filter_by(user_id=current_user.id).all()
+    else:
+        flashcards = Flashcard.query.filter_by(topic=topic, user_id=current_user.id).all()
+    return render_template('profile.html', name=current_user.name, flashcards=flashcards)
 @app.route('/delete_flashcard', methods=['POST'])
 def delete_flashcard():
     flashcard_id = request.form.get('flashcard_id')
@@ -111,7 +119,6 @@ def delete_flashcard():
         db.session.delete(flashcard)
         db.session.commit()
     return redirect(url_for('profile'))
-
 
 if __name__ == '__main__':
     app.run(debug=True,port=5000)
