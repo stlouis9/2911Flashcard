@@ -1,4 +1,7 @@
 .venv/
 project/__pycache__/
 project/instance/flashwizard.db
+project/.coverage
+.coverage
 flashwizard.db
+
