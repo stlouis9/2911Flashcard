@@ -35,4 +35,6 @@ def test_add_flashcards(test_client, login):
     assert login.status_code == 200
     response = test_client.post('/add_flashcard', data={'question': 'Hello', 'answer': 'World', 'topic': 'test'}, follow_redirects = True)
     assert response.status_code == 200  
-    assert b"Hello" in response.data  
+    assert b"Hello" in response.data
+
+ 
