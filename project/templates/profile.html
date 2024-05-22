@@ -66,9 +66,17 @@
     margin-top: 10%;
   }
 
-  .modal-header {
+  .updateModal {
+    margin-top: 10%;
+  }
+
+  .createModal .modal-header {
       background-color: whitesmoke;
     }
+
+   .updateModal .modal-header {
+    background-color: hotpink;
+  }
   .modal-header .btn-close {
       margin-right: -0.75rem;
     }
@@ -126,7 +134,7 @@
   <div class="cat-popup"></div>
 </div>
 
-<!-- Modal -->
+<!-- Create Flashcard Modal -->
 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
   <div class="modal-dialog createModal" role="document">
     <div class="modal-content">
@@ -154,6 +162,36 @@
     </div>
   </div>
 </div>
+
+<!-- Update Flashcard Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+  <div class="modal-dialog updateModal" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateModalLabel">Update Flashcard Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/add_flashcard" method="POST">
+          <div class="mb-3">
+            <label for="question" class="form-label">Question</label>
+            <input type="text" class="form-control" id="question" name="question" required>
+          </div>
+          <div class="mb-3">
+            <label for="answer" class="form-label">Answer</label>
+            <input type="text" class="form-control" id="answer" name="answer" required>
+          </div>
+          <div class="mb-3">
+            <label for="topic" class="form-label">Topic</label>
+            <input type="text" class="form-control" id="topic" name="topic" required>
+          </div>
+            <button type="submit" class="btn btn-submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> 
+
 
 <!-- Filter Selector -->
 <div class="container">
@@ -209,7 +247,7 @@
         </button>
       </form>
       <form>
-        <button type="submit" class="border border-1 btn btn-danger btn-sm mt-1 mx-2" style="width: 30px; height: 30px;">
+        <button type="button" class="border border-1 btn btn-danger btn-sm mt-1 mx-2" data-bs-toggle="modal" data-bs-target="#updateModal" style="width: 30px; height: 30px;">
           <i class="fas fa-edit"></i>
         </button>
       </form>
