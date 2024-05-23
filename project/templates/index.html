@@ -3,6 +3,10 @@
 {% block content %}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <style>
+    body {
+        margin-bottom: 2vw;
+    }
+
     .context {
         width: 100%;
         position: relative;
@@ -235,7 +239,7 @@
           <div class="text">
              <h1><strong>FlashCards</strong></h1>
              <p> Easily craft dynamic study promts tailored to your unique study needs. From vocabulary drills to complex equations, empower your memory with our intuitive platform</p>
-             <a href="#" class="btn"> <strong>Get started! </strong> </a>
+             <a href="#" class="btn btn-light"> <strong>Get started! </strong> </a>
           </div>
        </div>
     </div>
@@ -258,55 +262,12 @@
        </div>
        <div class=" sub-heads col-3">
           <h3><strong> Active <br> Recall</strong></h3>
-          <p>Reinforce, recall, repeat!Watch as your knowledge flourishes with each flip.</p>
+          <p>Reinforce, recall, repeat! Watch as your knowledge flourishes with each flip.</p>
        </div>
        <div class="sub-heads col-3">
           <h3><strong> Expedite <br>Comprehension </strong></h3>
-          <p>Fast-track your learning journey!Say hello to comprehension on turbo mode!</p>
+          <p>Fast-track your learning journey! Say hello to comprehension on turbo mode!</p>
        </div>
     </div>
  </div>
-
- <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    Launch static backdrop modal
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="forms">
-                   <label for="inputAddress" class="form-label">Question</label>
-                   <input type="text" class="form-control" id="inputAddress">
-                </div>
-                <div class="forms">
-                   <label for="inputAddress" class="form-label">Answer</label>
-                   <input type="text" class="form-control" id="inputAddress">
-                </div>
-                <div class="forms">
-                   <label for="exampleFormControlTextarea1" class="form-label">Topic</label>
-                   <input type="text" class="form-control" id="inputAddress">
-                </div>
-                <div class="button">
-                   <a href="#"> Submit </a>
-             </form>
-             </div>
-          </div>
-       </div>
-    </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
-        </div>
-      </div>
-    </div>
-  </div>
 {% endblock %}
