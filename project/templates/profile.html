@@ -173,7 +173,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="/add_flashcard" method="POST">
+        <form action="/update_flashcard" method="POST">
+          <input type="hidden" id="flashcard_id" name="flashcard_id">
           <div class="mb-3">
             <label for="question" class="form-label">Question</label>
             <input type="text" class="form-control" id="question" name="question" required>
@@ -186,12 +187,12 @@
             <label for="topic" class="form-label">Topic</label>
             <input type="text" class="form-control" id="topic" name="topic" required>
           </div>
-            <button type="submit" class="btn btn-submit">Submit</button>
+            <button type="submit" class="btn btn-submit">Update</button>
         </form>
       </div>
     </div>
   </div>
-</div> 
+</div>
 
 
 <!-- Filter Selector -->
@@ -248,7 +249,7 @@
         </button>
       </form>
       <form>
-        <button type="button" class="border border-1 btn btn-danger btn-sm mt-1 mx-2" data-bs-toggle="modal" data-bs-target="#updateModal" style="width: 30px; height: 30px;">
+        <button type="button" class="border border-1 btn btn-danger btn-sm mt-1 mx-2 open-update-modal" data-bs-toggle="modal" data-bs-target="#updateModal" data-flashcard-id="{{ flashcard.id }}" style="width: 30px; height: 30px;">
           <i class="fas fa-edit"></i>
         </button>
       </form>
@@ -262,6 +263,16 @@
   const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
   const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 </script>
+
+
+<script>
+  $('.open-update-modal').click(function() {
+      var flashcard_id = $(this).data('flashcard-id');
+      $('#flashcard_id').val(flashcard_id);
+      $('#updateModal').modal('show');
+  });
+</script>
+
 
 </body>
 
