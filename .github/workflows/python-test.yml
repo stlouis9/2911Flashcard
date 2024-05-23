@@ -8,14 +8,14 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-defaults:
-      run:
-        working-directory: project
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: project
     strategy:
       fail-fast: false
       matrix:
