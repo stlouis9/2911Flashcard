@@ -244,13 +244,13 @@
       <div class="formContainer my-1">
       <form action="/delete_flashcard" method="POST">
         <input type="hidden" name="flashcard_id" value="{{ flashcard.id }}">
-        <button type="submit" class="border border-1 btn btn-danger btn-sm mx-2" style="width: 30px; height: 30px;">
+        <button type="submit" class=" btn btn-danger btn-sm mx-2" style="width: 30px; height: 30px;">
           <i class="fa-solid fa-trash"></i>
         </button>
       </form>
       <form>
-        <button type="button" class="border border-1 btn btn-danger btn-sm mt-1 mx-2 open-update-modal" data-bs-toggle="modal" data-bs-target="#updateModal" data-flashcard-id="{{ flashcard.id }}" style="width: 30px; height: 30px;">
-          <i class="fas fa-edit"></i>
+        <button type="button" class=" btn btn-light btn-sm mt-1 mx-2 open-update-modal" data-bs-toggle="modal" data-bs-target="#updateModal" data-flashcard-id="{{ flashcard.id }}" style="width: 30px; height: 30px;">
+          <i class="fas fa-edit" style="color: var(--main-color);"></i>
         </button>
       </form>
       </div>
