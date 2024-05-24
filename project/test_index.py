@@ -18,7 +18,15 @@ def test_logout(test_client, login):
     assert login.status_code == 200
     logout_response = test_client.get('/logout', follow_redirects = True)
     assert logout_response.status_code == 200
-    print(logout_response.data)
+    
+    length = len(logout_response.data)
+ 
+    # create a new string of last N characters
+    Str2 = logout_response.data[length - 500:]
+    
+    # print Last N characters
+    print(Str2)
+    
     assert b"logged out" in logout_response.data
 
 def test_signup(test_client):
