@@ -38,4 +38,4 @@ jobs:
         python manage.py
     - name: Test with pytest
       run: |
-        python -m pytest --cov
+        python -m pytest --cov -s
