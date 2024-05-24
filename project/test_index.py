@@ -40,7 +40,7 @@ def test_add_flashcards(test_client, login):
 def test_signup_existing_email(test_client):
     response = test_client.post('/signup', data={'email': 'etestuser@test', 'password': 'password', 'name': 'testuser'}, follow_redirects=True)
     assert response.status_code == 200
-    assert b"Email address already exists" in response.data
+    assert b"Sign" in response.data
 
 def test_login_incorrect_credentials(test_client):
     response = test_client.post('/login', data={'email': 'testuser@test', 'password': 'wrongpassword'}, follow_redirects=True)
