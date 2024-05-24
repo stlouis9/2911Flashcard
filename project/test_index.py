@@ -38,7 +38,7 @@ def test_add_flashcards(test_client, login):
     assert b"Hello" in response.data
 
 def test_signup_existing_email(test_client):
-    response = test_client.post('/signup', data={'email': 'etestuser@test', 'password': 'password', 'name': 'testuser'}, follow_redirects=True)
+    response = test_client.post('/signup', data={'email': 'testuser@test', 'password': 'password', 'name': 'testuser'}, follow_redirects=True)
     assert response.status_code == 200
     assert b"Sign" in response.data
 
@@ -51,7 +51,18 @@ def test_filter_flashcards(test_client, login):
     assert login.status_code == 200
     response = test_client.post('/filter_flashcards', data={'topic': 'test'}, follow_redirects=True)
     assert response.status_code == 200
-    
+
+def test_update_flashcard(test_client, login):
+    assert login.status_code == 200
+    response = test_client.post('/update_flashcard', data={'flashcard_id': '1', 'question': 'Updated Question', 'answer': 'Updated Answer', 'topic': 'Updated Topic'}, follow_redirects=True)
+    assert response.status_code == 200
+    assert b"Updated Question" in response.data
+
+def test_delete_flashcard(test_client, login):
+    assert login.status_code == 200
+    response = test_client.post('/delete_flashcard', data={'flashcard_id': '1'}, follow_redirects=True)
+    assert response.status_code == 200
+
 
 
 
