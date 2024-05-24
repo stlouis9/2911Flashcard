@@ -16,7 +16,7 @@ def test_login(test_client):
 def test_logout(test_client, login):
     
     assert login.status_code == 200
-    logout_response = test_client.get('/logout')
+    logout_response = test_client.get('/logout', follow_redirects = True)
     assert logout_response.status_code == 200
     assert b"logged out" in logout_response.data
 
