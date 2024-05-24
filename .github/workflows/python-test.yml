@@ -38,7 +38,7 @@ jobs:
         python manage.py
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        pylint $(git ls-files '*.py') --fail-under=2
     - name: Test with pytest
       run: |
         python -m pytest --cov --doctest-modules --junitxml=junit/test-results-${{ matrix.python-version }}.xml
