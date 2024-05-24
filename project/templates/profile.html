@@ -146,18 +146,18 @@
       <div class="modal-body">
         <form action="/add_flashcard" method="POST" class="createForm">
           <div class="mb-3">
-            <label for="question" class="form-label">Question</label>
+            <label for="question" class="form-label"><strong>Question</strong></label>
             <input type="text" class="form-control" id="question" name="question" required>
           </div>
           <div class="mb-3">
-            <label for="answer" class="form-label">Answer</label>
+            <label for="answer" class="form-label"><strong>Answer</strong></label>
             <input type="text" class="form-control" id="answer" name="answer" required>
           </div>
           <div class="mb-3">
-            <label for="topic" class="form-label">Topic</label>
+            <label for="topic" class="form-label"><strong>Topic</strong></label>
             <input type="text" class="form-control" id="topic" name="topic" required>
           </div>
-            <button type="submit" class="btn btn-submit">Submit</button>
+            <button type="submit" class="btn btn-submit border border-2">Submit</button>
         </form>
       </div>
     </div>
@@ -167,30 +167,30 @@
 <!-- Update Flashcard Modal -->
 <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog updateModal" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="updateModalLabel">Update Flashcard Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="updateModalLabel">Update Flashcard Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form action="/update_flashcard" method="POST">
+                  <input type="hidden" id="flashcard_id" name="flashcard_id">
+                  <div class="mb-3">
+                      <label for="question" class="form-label"><strong>Question</strong></label>
+                      <input type="text" class="form-control" id="question" name="question" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="answer" class="form-label"><strong>Answer</strong></label>
+                      <input type="text" class="form-control" id="answer" name="answer" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="topic" class="form-label"><strong>Topic</strong></label>
+                      <input type="text" class="form-control" id="topic" name="topic" required>
+                  </div>
+                  <button type="submit" class="btn btn-submit border border-2">Update</button>
+              </form>
+          </div>
       </div>
-      <div class="modal-body">
-        <form action="/update_flashcard" method="POST">
-          <input type="hidden" id="flashcard_id" name="flashcard_id">
-          <div class="mb-3">
-            <label for="question" class="form-label">Question</label>
-            <input type="text" class="form-control" id="question" name="question" required>
-          </div>
-          <div class="mb-3">
-            <label for="answer" class="form-label">Answer</label>
-            <input type="text" class="form-control" id="answer" name="answer" required>
-          </div>
-          <div class="mb-3">
-            <label for="topic" class="form-label">Topic</label>
-            <input type="text" class="form-control" id="topic" name="topic" required>
-          </div>
-            <button type="submit" class="btn btn-submit">Update</button>
-        </form>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -242,18 +242,23 @@
       </div>
       <!--Hidden form for create operation-->
       <div class="formContainer my-1">
-      <form action="/delete_flashcard" method="POST">
-        <input type="hidden" name="flashcard_id" value="{{ flashcard.id }}">
-        <button type="submit" class=" btn btn-danger btn-sm mx-2" style="width: 30px; height: 30px;">
-          <i class="fa-solid fa-trash"></i>
+        <form action="/delete_flashcard" method="POST">
+            <input type="hidden" name="flashcard_id" value="{{ flashcard.id }}">
+            <button type="submit" class="btn btn-danger btn-sm mx-2" style="width: 30px; height: 30px;">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        </form>
+        <button type="button" class="btn btn-light btn-sm mt-1 mx-2 open-update-modal"
+                data-bs-toggle="modal"
+                data-bs-target="#updateModal"
+                data-flashcard-id="{{ flashcard.id }}"
+                data-question="{{ flashcard.question }}"
+                data-answer="{{ flashcard.answer }}"
+                data-topic="{{ flashcard.topic }}"
+                style="width: 30px; height: 30px;">
+            <i class="fas fa-edit" style="color: var(--main-color);"></i>
         </button>
-      </form>
-      <form>
-        <button type="button" class=" btn btn-light btn-sm mt-1 mx-2 open-update-modal" data-bs-toggle="modal" data-bs-target="#updateModal" data-flashcard-id="{{ flashcard.id }}" style="width: 30px; height: 30px;">
-          <i class="fas fa-edit" style="color: var(--main-color);"></i>
-        </button>
-      </form>
-      </div>
+    </div>
 {% endfor %}
   </div>
 </div>
@@ -266,9 +271,17 @@
 
 
 <script>
-  $('.open-update-modal').click(function() {
+$('.open-update-modal').click(function() {
       var flashcard_id = $(this).data('flashcard-id');
+      var question = $(this).data('question');
+      var answer = $(this).data('answer');
+      var topic = $(this).data('topic');
+      
       $('#flashcard_id').val(flashcard_id);
+      $('#updateModal #question').val(question);
+      $('#updateModal #answer').val(answer);
+      $('#updateModal #topic').val(topic);
+      
       $('#updateModal').modal('show');
   });
 </script>
