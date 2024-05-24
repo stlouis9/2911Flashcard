@@ -53,16 +53,7 @@ def test_filter_flashcards(test_client, login):
     assert response.status_code == 200
     
 
-# def test_delete_flashcard(test_client, login):
-#     assert login.status_code == 200
-#     response = test_client.post('/delete_flashcard', data={'flashcard_id': '41'}, follow_redirects=True)
-#     assert response.status_code == 200
 
-# def test_update_flashcard(test_client, login):
-#     assert login.status_code == 200
-#     response = test_client.post('/update_flashcard', data={'flashcard_id': '42', 'question': 'Updated Question', 'answer': 'Updated Answer', 'topic': 'Updated Topic'}, follow_redirects=True)
-#     assert response.status_code == 200
-#     assert b"Updated Question" in response.data
 
 
 
