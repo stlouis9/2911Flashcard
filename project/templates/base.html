@@ -12,52 +12,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
     <link rel='icon' href='assets/catwizard.png' type='image/x-icon' sizes="16x16" />
-    <style>
-        :root {
-            --main-color: rgb(17,50,139);
-        }
-        html {
-            background-color: var(--main-color);
-        }
-
-        body {
-            background: linear-gradient(0deg, rgba(17,50,139,1) 0%, rgba(112,228,251,1) 100%); /* This is Bootstrap's purple color */
-            color: black; /* This makes the text color black */
-            animation: fadeInAnimation ease 0.3s; /*Simple page transition*/
-            animation-iteration-count: 1;
-            animation-fill-mode: forwards;
-        }
-
-        /*Page transition animation*/
-        @keyframes fadeInAnimation {
-            0% {opacity: 0;}
-            100% {opacity: 1;}
-        }
-
-        .navbar {
-            background-color: rgb(241, 245, 255);
-            box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-            position: static;
-        }
-
-        nav a{
-            color: var(--main-color);
-            font-weight: 600;
-        }
-        .navbar img{
-            height:100px;
-            margin-left:10px;
-        }
-
-        .nav-item > a {
-            position: relative;
-            color: var(--main-color);
-            left: 20px;
-        }
-    </style>
 </head>
 
 <body>
+    <link rel="stylesheet" href="assets/base.css">
     <div class="logo">
         
     <nav class="navbar navbar-expand-lg"> 
